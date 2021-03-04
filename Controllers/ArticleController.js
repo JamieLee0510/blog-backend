@@ -1,10 +1,10 @@
 const Article = require("./../models/article");
-const mongoose = require("mongoose");
 
 module.exports = {
   newPost: async (req, res) => {
     let payload = {
       title: req.body.title,
+      description: req.body.description,
       quill: req.body.quill,
       imgUrl: req.body.imgUrl,
     };

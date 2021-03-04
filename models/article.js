@@ -7,17 +7,18 @@ const creatDomPurify = require("dompurify");
 const { JSDOM } = require("jsdom");
 const dompurify = creatDomPurify(new JSDOM().window);
 
-// const slugify = require('slugify')
-
-//目前用不到，因為中文在mongodb搜索的問題還沒有解決
-// const slugify = function (str) {
-//     str = str.replace(/[^a-zA-Z0-9_\u3400-\u9FBF\s-]/g, '') // replace spaces with dashes
-//     str = encodeURIComponent(str) // encode (it encodes chinese characters)
-//     return str
-// }
+let ts = Date.now();
+let date_ob = new Date(ts);
+let date = date_ob.getDate();
+let month = date_ob.getMonth() + 1;
+let year = date_ob.getFullYear();
 
 const articleSchema = new mongoose.Schema({
   title: {
+    type: String,
+    required: true,
+  },
+  description: {
     type: String,
     required: true,
   },
@@ -26,8 +27,8 @@ const articleSchema = new mongoose.Schema({
     required: true,
   },
   createdAt: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default: year + "-" + month + "-" + date,
   },
   imgUrl: {
     type: String,

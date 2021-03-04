@@ -6,7 +6,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       const secret = process.env.ACCESS_TOKEN_SECRET;
       const options = {
-        expiresIn: "1h",
+        expiresIn: "1y",
       };
       JWT.sign({ username: username }, secret, options, (err, token) => {
         if (err) {
